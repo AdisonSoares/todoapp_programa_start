@@ -1,7 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.util.Date;
 
+/**
+ *
+ * @author adison
+ */
 public class Task {
     private int id;
     private int idProject;
@@ -9,28 +17,28 @@ public class Task {
     private String description;
     private String notes;
     private boolean isCompleted;
-    private Date deadLine;
+    private Date deadline;
     private Date createdAt;
     private Date updatedAt;
 
     public Task() {
     }
 
-    public Task(int id, int idProject, String name, String description, String notes, boolean isCompleted, Date deadLine, Date createdAt, Date updatedAt) {
+    public Task(int id, int idProject, String name, String description, String notes, boolean isCompleted, Date deadline, Date createdAt, Date updatedAt) {
         this.id = id;
         this.idProject = idProject;
         this.name = name;
         this.description = description;
         this.notes = notes;
         this.isCompleted = isCompleted;
-        this.deadLine = deadLine;
+        this.deadline = deadline;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
     @Override
     public String toString() {
-        return "Task{" + "id=" + id + ", idProject=" + idProject + ", name=" + name + ", description=" + description + ", notes=" + notes + ", isCompleted=" + isCompleted + ", deadLine=" + deadLine + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+        return "Task{" + "id=" + id + ", idProject=" + idProject + ", name=" + name + ", description=" + description + ", notes=" + notes + ", isCompleted=" + isCompleted + ", deadline=" + deadline + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
 
     public int getId() {
@@ -81,12 +89,12 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
-    public Date getDeadLine() {
-        return deadLine;
+    public Date getDeadline() {
+        return deadline;
     }
 
-    public void setDeadLine(Date deadLine) {
-        this.deadLine = deadLine;
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
     public Date getCreatedAt() {
@@ -103,12 +111,5 @@ public class Task {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-   
-
-
-    
-    
-    
+    }  
 }
