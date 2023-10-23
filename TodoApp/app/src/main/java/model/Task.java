@@ -22,6 +22,8 @@ public class Task {
     private Date updatedAt;
 
     public Task() {
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     public Task(int id, int idProject, String name, String description, String notes, boolean isCompleted, Date deadline, Date createdAt, Date updatedAt) {
