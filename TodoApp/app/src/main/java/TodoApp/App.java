@@ -3,6 +3,12 @@
  */
 package TodoApp;
 
+import controller.ProjectController;
+import controller.TaskController;
+import java.util.List;
+import model.Project;
+import model.Task;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
@@ -10,5 +16,55 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        
+        ProjectController projectController = new ProjectController();
+        Project project = new Project();
+
+        //Insert
+        project.setName("Projeto teste 01");
+        project.setDescription("Descrição teste 01");
+        projectController.save(project);
+
+        //Update
+//        project.setId(1);
+//        project.setName("Projeto teste 02");
+//        project.setDescription("Descrição teste 02");
+//        projectController.update(project);
+
+        //List
+        //List<Project> projects = projectController.getAll();
+        //System.out.println("Total de projetos: " + projects.size());
+
+        //Delete
+//        projectController.removeById(1);
+
+        //TaskController taskController = new TaskController();
+        //Task task = new Task();
+
+        //Insert
+        //task.setIdProject(3);
+        //task.setName("Task teste 01");
+        //task.setDescription("Task teste 01");
+        //task.setNotes("Task teste 01");
+        //task.setCompleted(false);
+        //taskController.save(task);
+
+
+//        //Update
+//        task.setIdProject(2);
+//        task.setId(3);
+//        task.setId(3);
+//        task.setIdProject(2); 
+//        task.setDeadline(new Date());
+//        task.setName("Task teste 02");
+//        taskController.update(task);
+//
+//        //List
+//        List<Task> tasks = taskController.getAll(1);
+//        System.out.println("Total de projetos: " + tasks.size());
+//
+//        //Delete
+//        taskController.removeById(1);
+
     }
 }

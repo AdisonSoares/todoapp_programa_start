@@ -47,6 +47,7 @@ public class TaskController {
             ConnectionFactory.closeConnection(connection, statement);
         }
     }
+    
     public void update(Task task){
         String sql = "UPDATE tasks SET idProjects = ?, "
                 + "name = ?, description = ?,  notes = ?, "
