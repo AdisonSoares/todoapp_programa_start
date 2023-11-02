@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
+import model.domain.Task;
+import util.ConnectionFactory;
 
 import java.sql.*;
-import java.util.List;
 import java.util.ArrayList;
-import model.Task;
-import util.ConnectionFactory;
+import java.util.List;
 
 /**
  *
@@ -33,7 +33,7 @@ public class TaskController {
             statement.setInt(1, task.getIdProject());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
-            statement.setBoolean(4, task.isIsCompleted());
+            statement.setBoolean(4, task.isCompleted());
             statement.setString(5, task.getNotes());
             statement.setDate(6, new Date(task.getDeadline().getTime()));
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
@@ -47,7 +47,6 @@ public class TaskController {
             ConnectionFactory.closeConnection(connection, statement);
         }
     }
-    
     public void update(Task task){
         String sql = "UPDATE tasks SET idProjects = ?, "
                 + "name = ?, description = ?,  notes = ?, "
@@ -68,7 +67,7 @@ public class TaskController {
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
             statement.setString(4, task.getNotes());
-            statement.setBoolean(5, task.isIsCompleted());
+            statement.setBoolean(5, task.isCompleted());
             statement.setDate(6, new Date(task.getDeadline().getTime()));
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
             statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
@@ -80,33 +79,30 @@ public class TaskController {
         } catch (Exception ex){
             throw new RuntimeException("Erro ao atualizar o banco!"+ex.getMessage(), ex);
         }
-    }    
-
-    public void removeById(int taskId){
+    }
+    public void removeById(int taskId) {
         String sql = "DELETE FROM tasks WHERE id = ?";
         Connection connection = null;
         PreparedStatement statement = null;
-        
+
         try {
             //Criação da conexão com o banco
             connection = ConnectionFactory.getConnection();
-            
+
             //Preparando a query
             statement = connection.prepareStatement(sql);
-            
+
             //Setando os valores
             statement.setInt(1, taskId);
-            
+
             //Executando a query
             statement.execute();
-            
-        } catch (Exception e) {
+        } catch (Exception ex){
             throw new RuntimeException("Erro ao deletar a tarefa!");
         } finally {
             ConnectionFactory.closeConnection(connection, statement);
         }
     }
-  
     public List<Task> getAll(int idProject){
         String sql = "SELECT * FROM tasks";
         List<Task> tasks = new ArrayList<>();
@@ -138,7 +134,7 @@ public class TaskController {
                 task.setName(resultSet.getString("name"));
                 task.setDescription(resultSet.getString("description"));
                 task.setNotes(resultSet.getString("notes"));
-                task.setIsCompleted(resultSet.getBoolean("completed"));
+                task.setCompleted(resultSet.getBoolean("completed"));
                 task.setDeadline(resultSet.getDate("deadline"));
                 task.setCreatedAt(resultSet.getDate("createdAt"));
                 task.setUpdatedAt(resultSet.getDate("updatedAt"));
@@ -150,7 +146,7 @@ public class TaskController {
             throw new RuntimeException("Erro ao listar o banco!" + ex.getMessage(), ex);
         } finally {
             ConnectionFactory.closeConnection(connection, statement, resultSet);
-        } 
+        }
 
         //Lista de tarefas que foi criada e carregada do banco de dados
         return tasks;
@@ -186,7 +182,7 @@ public class TaskController {
                 task.setDescription(rset.getString("description"));
                 task.setNotes(rset.getString("notes"));
                 task.setDeadline(rset.getDate("deadline"));
-                task.setIsCompleted(rset.getBoolean("completed"));
+                task.setCompleted(rset.getBoolean("completed"));
                 task.setCreatedAt(rset.getDate("createdAt"));
                 task.setCreatedAt(rset.getDate("updatedAt"));
 
@@ -212,5 +208,5 @@ public class TaskController {
         }
         return tasks;
     }
-      
+
 }
